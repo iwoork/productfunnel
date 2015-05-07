@@ -1,0 +1,13 @@
+<template name="filters_active">
+    <ul class="nav nav-pills">
+        {{#each posa}}
+        <li><span class="label label-info">POSa: {{this}} | <i class="fa fa-close"></i></span></li>
+        {{/each}}
+        {{#each channel}}
+        <li><span class="label label-info">Channel: {{this}} | <i class="fa fa-close"></i></span></li>
+        {{/each}}
+        {{#each platform}}
+        <li><span class="label label-info">Platform: {{this}} | <i class="fa fa-close"></i></span></li>
+        {{/each}}
+    </ul>
+</template>

@@ -1,0 +1,14 @@
+<template name="layout">
+    {{> yield region='header'}}
+
+    <div id="content" class="container page-{{route}}">
+        <div class="row">
+            {{> yield region='aside'}}
+            <div id="main-content">
+                {{> yield}}
+            </div>
+        </div>
+    </div>
+    {{> yield region='footer'}}
+
+</template>

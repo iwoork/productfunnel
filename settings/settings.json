@@ -1,0 +1,133 @@
+{
+    "public": {
+        "channels": [
+            {
+                "shortcode": "sem",
+                "name": "SEM"
+            },
+            {
+                "shortcode": "seo",
+                "name": "SEO"
+            },
+            {
+                "shortcode": "tms",
+                "name": "TMS"
+            },
+            {
+                "shortcode": "aff",
+                "name": "AFF"
+            },
+            {
+                "shortcode": "gco",
+                "name": "GCO"
+            },
+            {
+                "shortcode": "brand",
+                "name": "Brand"
+            },
+            {
+                "shortcode": "app",
+                "name": "APP"
+            }
+        ],
+        "posa": [
+            {
+                "shortcode": "ja",
+                "name": "Japan"
+            },
+            {
+                "shortcode": "ko",
+                "name": "South Korea"
+            },
+            {
+                "shortcode": "au",
+                "name": "Australia"
+            },
+            {
+                "shortcode": "cn",
+                "name": "China"
+            },
+            {
+                "shortcode": "hk",
+                "name": "Hong Kong"
+            },
+            {
+                "shortcode": "tw",
+                "name": "Taiwan"
+            },
+            {
+                "shortcode": "in",
+                "name": "India"
+            },
+            {
+                "shortcode": "th",
+                "name": "Thailand"
+            },
+            {
+                "shortcode": "my",
+                "name": "Malaysia"
+            },
+            {
+                "shortcode": "nz",
+                "name": "New Zealand"
+            },
+            {
+                "shortcode": "sg",
+                "name": "Singapore"
+            },
+            {
+                "shortcode": "ph",
+                "name": "Philippines"
+            },
+            {
+                "shortcode": "vn",
+                "name": "Vietnam"
+            },
+            {
+                "shortcode": "id",
+                "name": "Indonesia"
+            },
+            {
+                "shortcode": "asia",
+                "name": "Rest of Asia"
+            }
+        ],
+        "platforms": [
+            {
+                "shortcode": "desk",
+                "name": "Desktop"
+            },
+            {
+                "shortcode": "tablet",
+                "name": "Tablet"
+            },
+            {
+                "shortcode": "mob",
+                "name": "Mobile"
+            }
+        ],
+        "pages": [
+            {
+                "omniture_name": "home page",
+                "name": "Homepage"
+            },
+            {
+                "omniture_name": "search result with dates",
+                "name": "SRP"
+            },
+            {
+                "omniture_name": "hotel details page description tab",
+                "name": "PDP"
+            }
+        ],
+        "defaults": {
+            "date": {
+                "start_date": "2014-01-01",
+                "end_date": "2014-01-31"
+            }
+        }
+    },
+    "private": {
+
+    }
+}

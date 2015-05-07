@@ -1,0 +1,71 @@
+<template name="dashboard">
+<div class="pull-right">
+    <img src="/images/nanpug.jpg" />
+</div>
+<h1>APAC Performance Dashboard</h1>
+<div class="alerts">
+    <div class="alert alert-danger alert-dismissable" role="alert">
+        <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        <i class="fa fa-bullhorn pull-left"></i>
+        There are <strong>2 Marketing Channels</strong> and <strong>5  POS</strong> that are below the threshold and needed investigation.
+    </div>
+    <div class="alert alert-info alert-dismissable" role="alert">
+        <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        <i class="fa fa-bell pull-left"></i>
+        Oooops! There were problems detected that requires investigation.
+    </div>
+</div>
+<hr/>
+{{> dashboard_posa}}
+<div class="clearfix pull-right">
+    Sort by:
+    <div class="btn-group" role="group" aria-label="channels">
+        <button type="button" class="btn btn-default" data-sort-by="performance">Performance</button>
+        <button type="button" class="btn btn-default" data-sort-by="efficiency">Efficiency</button>
+        <button type="button" class="btn btn-default" data-sort-by="bps">BPS</button>
+        <button type="button" class="btn btn-default" data-sort-by="cvr">CVR</button>
+        <button type="button" class="btn btn-default" data-sort-by="qscvr">QS CVR</button>
+    </div>
+</div>
+<h2><i class="fa fa-filter"></i> Marketing Channels</h2>
+<div class="row isotope">
+    {{#each channels}}
+    <div class="col-sm-3">
+        <div class="panel panel-{{status}} panel-default">
+            <div class="panel-heading">
+                <div class="pull-right">
+                    <i class="fa fa-thumbs-up"></i>
+                </div>
+                <h3 class="panel-title">{{this.name}}</h3>
+            </div>
+            <div class="panel-body text-center">
+                <div class="chart-gauge"><i class="fa fa-spinner fa-spin"></i></div>
+                <h4 class="yoy text-{{status}}"><i class="fa fa-arrow-up"></i> +100bps <small>YoY</small></h4>
+                <h4 class="cvr text-{{status}}"><i class="fa fa-arrow-down"></i> -2.0% <small>CVR</small></h4>
+                <h4 class="qscvr text-{{status}}"><i class="fa fa-arrow-down"></i> -2.0% <small>QS CVR</small></h4>
+            </div>
+        </div>
+    </div>
+    {{/each}}
+</div>
+<hr/>
+<h2><i class="fa fa-desktop"></i> Platforms</h2>
+<div class="row isotope">
+    {{#each platforms}}
+    <div class="col-sm-3">
+        <div class="panel panel-success panel-default">
+            <div class="panel-heading">
+                <div class="pull-right">
+                    <i class="fa fa-thumbs-up"></i>
+                </div>
+                <h3 class="panel-title">{{this.name}}</h3>
+            </div>
+            <div class="panel-body">
+                <h4 class="text-success">+100bps <small>YoY</small></h4>
+                <h4 class="text-danger">-2.0% <small>CVR</small></h4>
+            </div>
+        </div>
+    </div>
+    {{/each}}
+</div>
+</template>

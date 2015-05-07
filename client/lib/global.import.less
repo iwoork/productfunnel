@@ -1,0 +1,108 @@
+.alert {
+    strong {
+        text-decoration: underline;
+    }
+}
+#main-content {
+    .make-sm-column(9);
+}
+#date-form {
+    padding: 7px 0;
+    .form-group {
+        margin: 0;
+    }
+}
+.page-dashboard{
+    h1 {
+        margin-bottom: 2px;
+        color: @brand-primary;
+    }
+    hr {
+        margin-top: 0;
+    }
+    #main-content {
+        .make-sm-column(12);
+    }
+}
+.overview {
+    margin: 20px 0;
+}
+.chart {
+    margin: 40px 0;
+}
+.chart-gauge {
+    overflow: hidden;
+}
+#filters {
+    .make-md-column(3);
+    .panel-title > a {
+        display: block;
+    }
+}
+.posa-card {
+    .panel-body {
+        position: relative;
+    }
+    .overlay {
+        background: rgba(255,255,255,1);
+        position: absolute;
+        width: 100%;
+        height: 100%;
+        top: 0;
+        left: 0;
+        color: #000;
+        i {
+            color: #000;
+        }
+    }
+}
+
+#main-content {
+    .make-md-column(12)
+}
+.page-visits{
+    #filters {
+        .make-md-column(3)
+    }
+    #main-content {
+        .make-md-column(9)
+    }
+}
+.table > thead {
+    .active {
+        opacity: 0.9;
+    }
+}
+.table > tbody > tr > td {
+    vertical-align: middle !important;
+
+    p {
+        margin: 0;
+    }
+}
+nav.navbar-default {
+    background: #f61800;
+    background: -moz-linear-gradient(top,#f61800 0,#d41200 100%);
+    background: -webkit-linear-gradient(top,#f61800 0,#d41200 100%);
+    background: -o-linear-gradient(top,#f61800 0,#d41200 100%);
+    background: linear-gradient(top,#f61800 0,#d41200 100%);
+    -ms-filter: "progid:DXImageTransform.Microsoft.gradient(startColorStr='#FFF61800',EndColorStr='#FFD41200')";
+    zoom: 1;
+    border-top: 1px solid #d41200;
+    border-bottom: 1px solid #9c0c1e;
+    border-radius: 0;
+
+    .navbar-brand,
+    .navbar-nav > li > a {
+        color: #fff;
+    }
+}
+
+.analysis-date {
+    margin: 10px 0;
+    text-align: right;
+    .current-date {
+         font-weight: bold;
+        text-decoration: underline;
+    }
+}

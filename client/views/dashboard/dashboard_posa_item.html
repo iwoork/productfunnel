@@ -1,0 +1,27 @@
+<template name="dashboard_posa_item">
+    <div class="col-sm-3 posa-card posa-{{this.shortcode}}" data-visits="{{data.visits}}" data-orders="{{data.orders}}" data-cvr="{{data.cvr}}">
+        <div class="panel panel-{{data.performance.name}} panel-default">
+            <div class="panel-heading">
+                <div class="pull-right">
+                    <i class="fa {{data.performance.icon}}"></i>
+                </div>
+                <h3 class="panel-title">{{this.name}}</h3>
+            </div>
+            <div class="panel-body text-center">
+                <div class="overlay"><i class="fa fa-spin fa-cog"></i> Analyzing data...</div>
+                <h4 class="text-{{status}}">{{data.visits}} <small>visits</small></h4>
+                <h4 class="text-{{status}}">{{data.orders}} <small>orders</small></h4>
+                <h4 class="text-{{status}}">{{data.cvr}}% <small>CVR</small></h4>
+                <h4 class="text-{{status}}">{{data.qscvr}}% <small>QS CVR</small></h4>
+                <p>
+                    <strong>Factors:</strong>
+                    <ul class="list-unstyled">
+                        <li>101-hour Sale</li>
+                        <li>JETCO degraded (2 hours)</li>
+                        <li>Chinese New Year</li>
+                    </ul>
+                </p>
+            </div>
+        </div>
+    </div>
+</template>

@@ -1,0 +1,18 @@
+<template name="dashboard_posa">
+    <div class="clearfix pull-right">
+        Sort by:
+        <div id="sort-posa" class="btn-group" role="group" aria-label="posa">
+            <button type="button" class="btn btn-default" data-sort-by="performance">Performance</button>
+            <button type="button" class="btn btn-default" data-sort-by="visits">Visits</button>
+            <button type="button" class="btn btn-default" data-sort-by="orders">Orders</button>
+            <button type="button" class="btn btn-default" data-sort-by="cvr">CVR</button>
+            <button type="button" class="btn btn-default" data-sort-by="qscvr">QS CVR</button>
+        </div>
+    </div>
+    <h2><i class="fa fa-flag-o"></i> Point of Sales (POSa)</h2>
+    <div class="row isotope-posa">
+        {{#each posa}}
+        {{> dashboard_posa_item}}
+        {{/each}}
+    </div>
+</template>

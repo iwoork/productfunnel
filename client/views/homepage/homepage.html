@@ -1,0 +1,68 @@
+<template name="homepage">
+    <div id="active_filters">
+        {{> filters_active}}
+    </div>
+    <h1>Homepage Product Funnel</h1>
+    <ul class="nav nav-pills">
+        <li role="presentation" class="active"><a href="#">Overview</a></li>
+        <li role="presentation"><a href="/homepage/srp">Home to SRP</a></li>
+        <li role="presentation"><a href="/homepage/pdp">SRP to PDP</a></li>
+        <li role="presentation"><a href="/homepage/bf">PDP to BF</a></li>
+        <li role="presentation"><a href="/homepage/conf">BF to Confirmation</a></li>
+    </ul>
+    <div class="row overview">
+        <div class="col-sm-3">
+            <div class="panel panel-default">
+                <div class="panel-heading">
+                    <h3 class="panel-title">BPS</h3>
+                </div>
+                <div class="panel-body text-center">
+                    <h4 class="text-success">+100 <small>BPS</small></h4>
+                </div>
+            </div>
+        </div>
+        <div class="col-sm-3">
+            <div class="panel panel-default">
+                <div class="panel-heading">
+                    <h3 class="panel-title">YoY</h3>
+                </div>
+                <div class="panel-body text-center">
+                    <h4 class="text-success">+20% <small>YoY</small></h4>
+                </div>
+            </div>
+        </div>
+        <div class="col-sm-3">
+            <div class="panel panel-default">
+                <div class="panel-heading">
+                    <h3 class="panel-title">CVR</h3>
+                </div>
+                <div class="panel-body text-center">
+                    <h4 class="text-success">2.5% <small>CVR</small></h4>
+                </div>
+            </div>
+        </div>
+        <div class="col-sm-3">
+            <div class="panel panel-default">
+                <div class="panel-heading">
+                    <h3 class="panel-title">Visits</h3>
+                </div>
+                <div class="panel-body">
+                    <h4 class="text-success">112,100 <small>visits</small></h4>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        {{data.visits}}
+        <div class="chart">
+            {{> highchartsHelper chartId="homepagevolume" chartWidth="100%" charHeight="100%" chartObject=volume}}
+        </div>
+        <div class="chart">
+            {{> highchartsHelper chartId="homepage_srp" chartWidth="100%" charHeight="100%" chartObject=homepage_srp}}
+        </div>
+        <div class="chart">
+            {{visits}}
+            {{> highchartsHelper chartId="homepage_srp_pdp" chartWidth="100%" charHeight="100%" chartObject=homepage_srp_pdp}}
+        </div>
+    </div>
+</template>

@@ -1,0 +1,31 @@
+# Meteor packages used by this project, one per line.
+# Check this file (and the other files in this directory) into your repository.
+#
+# 'meteor add' and 'meteor remove' will edit this file for you,
+# but you can also edit it by hand.
+
+meteor-platform
+insecure
+coffeescript
+less
+iron:router
+nemo64:bootstrap
+maazalik:highcharts
+fortawesome:fontawesome
+mrt:moment
+isotope:isotope
+lepozepo:accounting
+http
+meteorhacks:aggregate
+aldeed:simple-schema
+meteorhacks:fast-render
+zimme:iron-router-active
+reactive-var
+mrt:loading
+aldeed:collection2
+alethes:mongo-ext
+mrt:underscore-string-latest
+mrt:minimongoid
+mrt:publish-with-relations
+simple:reactive-method
+multiply:iron-router-progress
