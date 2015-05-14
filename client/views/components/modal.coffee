@@ -6,37 +6,32 @@ renderChart = ->
             animation: Highcharts.svg
             zoomType: 'x'
             id: 'investigate'
+            width: 780
         title: text: ''
         credits: enabled: false
         tooltip:
             shared: true
-            formatter: ->
-                points = this.points
-                markup  = ''
-                for point in points
-                    markup += '<b>'+ Highcharts.numberFormat(points[point].y * 100, 2) + '%</b>';
-                markup
         xAxis:
             title: 
                 text: 'Day'
-            type: 'datetime'
+            #type: 'datetime'
             crosshair: true
         yAxis: [
             {
                 title: text: 'Visits'
                 labels: formatter: ->
-                    @value + 'k'
+                    @value / 1000 + 'k'
             }
             {
                 title: text: 'CVR'
                 labels: formatter: ->
-                    @value + 'BPS'
+                    @value + '%'
                 opposite: true
             }
         ]
         plotOptions: area:
             marker:
-                enabled: false
+                enabled: true
                 symbol: 'circle'
                 radius: 2
                 states: hover: enabled: true

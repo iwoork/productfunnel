@@ -11,12 +11,14 @@ formatData = (data) ->
     result
 
 plotData = (data) ->
+    data.reverse()
     console.log 'plot called'
-    console.log data
     chart = $('.modal-chart').highcharts()
+    chart.get('visits').setData []
     _.each(data, (point, index) ->
-        console.log point
-        coord = [index, point]
+        coord = []
+        coord.push index
+        coord.push parseInt point
         console.log coord
         chart.get('visits').addPoint(coord)
     )
