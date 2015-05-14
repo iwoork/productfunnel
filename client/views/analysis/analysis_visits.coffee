@@ -47,19 +47,22 @@ interpret = (results) ->
     response.max = accounting.formatNumber results.max
     response.today = accounting.formatNumber results.today
     response.stdev = accounting.formatNumber results.stdev
-    if warn > 1
+    if warn > 2
         response.status = 'danger'
-        response.text = 'Warning'
+        response.text = 'Alert!'
     else if warn == 0
         response.status = 'info'
         response.text = 'Normal'
+    else if warn == 1
+        response.status = 'warning'
+        response.text = 'Warning'
     else 
         if success > 0
             response.status = 'success'
             response.text = 'Awesome!'
         else
-            response.status = 'warning'
-            response.text = 'No data'
+            response.status = 'info'
+            response.text = 'Normal'
     Template.instance().visits.set response
 
 analyze = (funnel,  current) ->
