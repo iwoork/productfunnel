@@ -1,10 +1,12 @@
-conversionChart = (selector, entry) ->
-    $(selector).highcharts
+renderChart = ->
+    console.log 'here created'
+    $('.modal-chart').highcharts
         chart: 
             type: 'spline'
             animation: Highcharts.svg
             zoomType: 'x'
-        title: text: entry + ' Conversion'
+            id: 'investigate'
+        title: text: ''
         credits: enabled: false
         tooltip:
             shared: true
@@ -21,12 +23,12 @@ conversionChart = (selector, entry) ->
             crosshair: true
         yAxis: [
             {
-                title: text: 'CVR'
+                title: text: 'Visits'
                 labels: formatter: ->
-                    @value * 100 + '%'
+                    @value + 'k'
             }
             {
-                title: text: 'BPS'
+                title: text: 'CVR'
                 labels: formatter: ->
                     @value + 'BPS'
                 opposite: true
@@ -42,56 +44,33 @@ conversionChart = (selector, entry) ->
                 lineWidth: 1
         series: [
             {
-                id: 'this-year'
-                name: 'This year'
+                id: 'visits'
+                name: 'Visits'
                 color: 'red'
                 type: 'spline'
             }
-            {
-                id: 'last-year'
-                name: 'Last year'
-                color: 'orange'
-                type: 'spline'
-            }
-            {
-                name: 'BPS'
-                color: 'blue'
-                type: 'column'
-                yAxis: 1
-            }
         ]
 
-    # This year
-    Meteor.call 'getConversions', {
-        entry_page_name: entry
-        local_date:
-            $gte: new Date(moment().subtract("months", 3))
-            $lt: new Date()
-    }, (err, data) ->
-        if err
-            console.log err
-        else
-            chart = $(selector).highcharts()
-            dataset = []
-            _.each(data, (row) ->
-                point = []
-                point[0] = moment.months(row._id.month - 1) + ' ' + row._id.day
-                if entry == 'HOME PAGE'
-                    point[1] = row.home_cvr
-                if entry == 'SEARCH RESULT WITH DATES'
-                    point[1] = row.search_cvr
-                if entry == 'HOTEL DETAILS PAGE DESCRIPTION TAB'
-                    point[1] = row.pdp_cvr
-                chart.get('this-year').addPoint(point)
-                dataset.push(point[1])
-            )
-            return
+    #data = @Visits.find()
+    #chart = $(selector).highcharts()
+    #console.log data
+    #_.each(data, (row) ->
+    #    point = []
+    #    point[0] = moment.months(row._id.month - 1) + ' ' + row._id.day
+    #    if entry == 'HOME PAGE'
+    #        point[1] = row.home_cvr
+    #    if entry == 'SEARCH RESULT WITH DATES'
+    #        point[1] = row.search_cvr
+    #    if entry == 'HOTEL DETAILS PAGE DESCRIPTION TAB'
+    #        point[1] = row.pdp_cvr
+    #    chart.get('visits').addPoint(point)
+    #    dataset.push(point[1])
+    #)
 
-getVisits = ->
-    conversionChart('.conversions-home', 'HOME PAGE')
-    return
+Template.modal.onCreated ->
+   return
 
-Template.modal.rendered = ->
-    getVisits()
+Template.modal.onRendered ->
+    renderChart()
     return
 

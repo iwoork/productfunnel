@@ -1,3 +1,27 @@
+formatData = (data) ->
+    result = []
+    _.each(data, (item) ->
+        record = {}
+        record.name = item.month + ' ' + item.day
+        record.x = item.month
+        record.y = item.home
+        result.push record
+    )
+    #console.log result
+    result
+
+plotData = (data) ->
+    console.log 'plot called'
+    console.log data
+    chart = $('.modal-chart').highcharts()
+    _.each(data, (point, index) ->
+        console.log point
+        coord = [index, point]
+        console.log coord
+        chart.get('visits').addPoint(coord)
+    )
+
+
 growth = (current, previous) ->
     if previous == 0
         calc = 0
@@ -9,6 +33,7 @@ getOutliers = (data) ->
     # Calculate what's normal
     #console.log data
     outliers = {}
+    outliers.points = data
     outliers.today = data[0]
     data.shift()
     min = ss.min data
@@ -42,6 +67,7 @@ interpret = (results) ->
     response = {}
     success = results.success.length
     warn = results.warn.length
+    response.points = results.points
     response.mean = accounting.formatNumber results.mean
     response.min = accounting.formatNumber results.min
     response.max = accounting.formatNumber results.max
@@ -66,7 +92,7 @@ interpret = (results) ->
     Template.instance().visits.set response
 
 analyze = (funnel,  current) ->
-    console.log current
+    # console.log current
     total = current.length
     dow = moment().day() + 1
     result = []
@@ -79,6 +105,11 @@ analyze = (funnel,  current) ->
         i++
     #console.log result
     outliers = getOutliers result
+
+Template.analysis_visits.events
+    'click .btn': (event, template) ->
+        points = $(event.currentTarget).data('points')
+        plotData points.split(',')
 
 Template.analysis_visits.onCreated  ->
     @visits = new ReactiveVar

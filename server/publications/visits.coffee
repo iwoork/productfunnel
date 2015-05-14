@@ -4,8 +4,8 @@ Meteor.methods
         console.log filter
         defaults = {
             local_date:
-                $gte: new Date('2012-01-01')
-                $lt: new Date('2014-12-31')
+                $gte: new Date('2015-01-01')
+                $lt: new Date('2015-01-31')
             entry_page_name: 'HOME PAGE'
         }
         pipeline = [
@@ -16,23 +16,20 @@ Meteor.methods
             {
                 $group:
                     _id:
-                        entry_page_name: "$entry_page_name"
-                        day:
-                            $dayOfYear: "$local_date"
-                        dayOfWeek:
-                            $dayOfWeek: "$local_date"
-                    visits:
+                        group
+                    home:
                         $sum: "$home"
-            }
-            {
-                $sort:
-                    '_id.entry_page_name': 1
+                    search:
+                        $sum: "$search"
+                    pdp:
+                        $sum: "$pdp"
+                    bf:
+                        $sum: "$bf"
+                    conf:
+                        $sum: "$conf"
             }
         ]
         results = Visits.aggregate(pipeline)
-        _.each(results, (row) ->
-            self.added 'visits', Random.id(), row
-        )
         @ready()
 
 Meteor.publish 'visits', (filter, group) ->
@@ -69,11 +66,6 @@ Meteor.publish 'visits', (filter, group) ->
         _.each(row._id, (unique, index) ->
             row[index] = unique
         )
-        #row.day = row._id.day
-        #row.year = row._id.year
-        #row.month = row._id.month
-        #row.entry_page_name = row._id.entry_page_name
-        #row.dayOfWeek = row._id.dayOfWeek
         self.added 'visits', Random.id(), row
     )
     @ready()
