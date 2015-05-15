@@ -49,8 +49,8 @@ getOutliers = (data) ->
     warn = []
     cvr = []
     i = 0
-    # Take the last 2 same DoW
-    while i < 2
+    # Take the last same DoW
+    while i < 1
         if data[i] > top
             success.push i
         if data[i] < bottom

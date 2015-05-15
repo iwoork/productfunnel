@@ -30,6 +30,17 @@ Router.map ->
             header:
                 to: 'header'
 
+    @route '/platforms',
+        name: 'platforms'
+        template: 'platforms'
+        controller: PlatformController
+        yieldTemplates:
+            empty:
+                to: 'aside'
+            header:
+                to: 'header'
+
+ 
     @route '/entries',
         name: 'entries'
         template: 'entries'
