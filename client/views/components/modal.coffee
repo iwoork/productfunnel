@@ -1,12 +1,12 @@
 renderChart = ->
-    console.log 'here created'
+    console.log 'Chart created'
     $('.modal-chart').highcharts
         chart: 
             type: 'spline'
             animation: Highcharts.svg
             zoomType: 'x'
             id: 'investigate'
-            width: 780
+            width: 715
         title: text: ''
         credits: enabled: false
         tooltip:
@@ -31,7 +31,7 @@ renderChart = ->
         ]
         plotOptions: area:
             marker:
-                enabled: true
+                enabled: false
                 symbol: 'circle'
                 radius: 2
                 states: hover: enabled: true
@@ -41,10 +41,18 @@ renderChart = ->
             {
                 id: 'visits'
                 name: 'Visits'
+                color: '#5bc0de'
+                type: 'column'
+                yAxis: 0
+            }
+            {
+                id: 'conversions'
+                name: 'Conversions'
                 color: 'red'
                 type: 'spline'
+                yAxis: 1
             }
-        ]
+       ]
 
     #data = @Visits.find()
     #chart = $(selector).highcharts()

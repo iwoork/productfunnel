@@ -35,7 +35,7 @@ class @PlatformController extends RouteController
                 $year: "$local_date"
             dayOfWeek:
                 $dayOfWeek: "$local_date"
-            platform: "$c302"
+            c302: "$c302"
         }
         [
             Meteor.subscribe('visits', range, group)

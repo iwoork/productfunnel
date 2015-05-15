@@ -11,10 +11,15 @@ formatData = (data) ->
     result
 
 plotData = (data) ->
+    sample = [2.3,2.5,2.8,3.0,5.0,4.2,4.1,3.2,4.3,4.5]
     data.reverse()
-    console.log 'plot called'
+    console.log 'Chart called'
     chart = $('.modal-chart').highcharts()
+    #Reset data points
     chart.get('visits').setData []
+    chart.get('conversions').setData []
+
+    #Visits
     _.each(data, (point, index) ->
         coord = []
         coord.push index
@@ -22,7 +27,26 @@ plotData = (data) ->
         console.log coord
         chart.get('visits').addPoint(coord)
     )
+    #CVR
+    _.each(sample, (point, index) ->
+        chart.get('conversions').addPoint(point)
+    )
 
+plotNormalRange = (data) ->
+    mean = ss.mean(data)
+    sd = ss.standard_deviation(data)
+    chart = $('.modal-chart').highcharts()
+    chart.yAxis[0].removePlotBand('normal-range');
+    chart.yAxis[0].addPlotBand(
+        id: 'normal-range'
+        color: 'rgba(68, 170, 213, 0.1)',
+        label:
+            text: 'Normal range'
+            style:
+                color: '#606060'
+        from: mean - sd
+        to:  mean + sd
+    )
 
 growth = (current, previous) ->
     if previous == 0
@@ -33,7 +57,7 @@ growth = (current, previous) ->
 
 getOutliers = (data) ->
     # Calculate what's normal
-    #console.log data
+    console.log data
     outliers = {}
     outliers.points = data
     outliers.today = data[0]
@@ -112,6 +136,7 @@ Template.analysis_visits.events
     'click .btn': (event, template) ->
         points = $(event.currentTarget).data('points')
         plotData points.split(',')
+        plotNormalRange points.split(',')
 
 Template.analysis_visits.onCreated  ->
     @visits = new ReactiveVar
