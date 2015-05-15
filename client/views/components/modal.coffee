@@ -9,6 +9,8 @@ renderChart = ->
             width: 715
         title: text: ''
         credits: enabled: false
+        rangeSelector:
+            selected: 1
         tooltip:
             shared: true
         xAxis:
@@ -16,6 +18,16 @@ renderChart = ->
                 text: 'Day'
             #type: 'datetime'
             crosshair: true
+            plotLines: [
+                {
+                    color: 'green'
+                    dashStyle: 'shortdash'
+                    width: 2
+                    label:
+                        text: 'R2015.08.01'
+                    value: 3.4
+                }
+            ]
         yAxis: [
             {
                 title: text: 'Visits'
