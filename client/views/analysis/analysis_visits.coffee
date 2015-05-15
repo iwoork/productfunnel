@@ -135,6 +135,7 @@ analyze = (funnel,  current) ->
 Template.analysis_visits.events
     'click .btn': (event, template) ->
         points = $(event.currentTarget).data('points')
+        console.log template
         plotData points.split(',')
         plotNormalRange points.split(',')
 
@@ -157,8 +158,8 @@ Template.analysis_visits.onCreated  ->
     previous[@data.field] = @data.value
     sort = {
         sort:
-            month: -1
-            day: -1
+            month: 1
+            day: 1
     }
     #console.log current
     current_data = Visits.find(current, sort).fetch()
