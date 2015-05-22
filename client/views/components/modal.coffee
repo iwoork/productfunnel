@@ -16,8 +16,10 @@ renderChart = ->
         xAxis:
             title: 
                 text: 'Day'
-            #type: 'datetime'
+            type: 'datetime'
             crosshair: true
+            labels:
+                format: '{value:%Y-%m-%d}'
             plotLines: [
                 {
                     color: 'green'
@@ -37,7 +39,7 @@ renderChart = ->
             {
                 title: text: 'CVR'
                 labels: formatter: ->
-                    @value + '%'
+                    Highcharts.numberFormat @y,2
                 opposite: true
             }
         ]

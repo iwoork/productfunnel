@@ -1,6 +1,6 @@
 <template name="analysis_visits">
     {{#if Template.subscriptionsReady}}
-    <button class="btn btn-block btn-{{visits.status}}" data-points="{{visits.points}}" data-toggle="modal" data-target="#modal" data-title="{{visits.title}}">
+    <button class="btn btn-block btn-{{visits.status}}" data-points="{{visits.points}}" data-funnel="{{visits.funnel}}" data-filter-key="{{visits.filter_key}}" data-filter-value="{{visits.filter_value}}" data-toggle="modal" data-target="#modal" data-title="{{visits.title}}">
         <h4>{{visits.text}}</h4>
         <hr/>
         <h3>{{visits.today}}</h3>

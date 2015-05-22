@@ -11,8 +11,6 @@ formatData = (data) ->
     result
 
 plotData = (data) ->
-    sample = [2.3,2.5,2.8,3.0,5.0,4.2,4.1,3.2,4.3,4.5]
-    data.reverse()
     console.log 'Chart called'
     chart = $('.modal-chart').highcharts()
     #Reset data points
@@ -20,15 +18,13 @@ plotData = (data) ->
     chart.get('conversions').setData []
 
     #Visits
-    _.each(data, (point, index) ->
-        coord = []
-        coord.push index
-        coord.push parseInt point
-        console.log coord
-        chart.get('visits').addPoint(coord)
+    _.each(data.visits, (point) ->
+        console.log point
+        chart.get('visits').addPoint(point)
     )
-    #CVR
-    _.each(sample, (point, index) ->
+    #Conversions
+    _.each(data.conversions, (point) ->
+        console.log point
         chart.get('conversions').addPoint(point)
     )
 
@@ -55,10 +51,13 @@ growth = (current, previous) ->
         calc = (current / previous) - 1
     calc
 
-getOutliers = (data) ->
+getOutliers = (filter_key, filter_value, funnel, data) ->
     # Calculate what's normal
-    console.log data
+    #console.log data
     outliers = {}
+    outliers.filter_key = filter_key
+    outliers.filter_value = filter_value
+    outliers.funnel = funnel
     outliers.points = data
     outliers.today = data[0]
     data.shift()
@@ -94,6 +93,9 @@ interpret = (results) ->
     success = results.success.length
     warn = results.warn.length
     response.points = results.points
+    response.filter_key = results.filter_key
+    response.filter_value = results.filter_value
+    response.funnel = results.funnel
     response.mean = accounting.formatNumber results.mean
     response.min = accounting.formatNumber results.min
     response.max = accounting.formatNumber results.max
@@ -117,7 +119,7 @@ interpret = (results) ->
             response.text = 'Normal'
     Template.instance().visits.set response
 
-analyze = (funnel,  current) ->
+analyze = (filter_key, filter_value, funnel,  current) ->
     # console.log current
     total = current.length
     dow = moment().day() + 1
@@ -130,14 +132,41 @@ analyze = (funnel,  current) ->
                 result.push current[i][funnel]
         i++
     #console.log result
-    outliers = getOutliers result
+    outliers = getOutliers filter_key, filter_value, funnel, result
 
 Template.analysis_visits.events
     'click .btn': (event, template) ->
         points = $(event.currentTarget).data('points')
-        console.log template
-        plotData points.split(',')
-        plotNormalRange points.split(',')
+
+        # Method call for data
+        color = 'rgba(0,0,0,0.6)'
+        options = {lines: 10, length: 20, speed: 1}
+        selector = '#spinner-overlay'
+        LoadingOverlay.createLoadingOverlay(selector, color)
+        $('.spinner').remove()
+
+        funnel = $(event.currentTarget).data('funnel')
+        filter_key = $(event.currentTarget).data('filter-key')
+        filter_value = $(event.currentTarget).data('filter-value')
+        filter = {}
+        filter[filter_key] = filter_value
+        Meteor.call 'getVisits', funnel, filter, {
+            month: $month: '$local_date'
+            day: $dayOfMonth: '$local_date'
+            year: $year: '$local_date'
+            dayOfWeek: $dayOfWeek: '$local_date'
+        }, (err, data) ->
+            LoadingOverlay.createNewSpinner(selector)
+            if err
+                console.log err
+            else
+                console.log data
+                plotData data
+                LoadingOverlay.destroyLoadingOverlay(selector);
+            return
+
+        #plotData points.split(',')
+        #plotNormalRange points.split(',')
 
 Template.analysis_visits.onCreated  ->
     @visits = new ReactiveVar
@@ -164,7 +193,7 @@ Template.analysis_visits.onCreated  ->
     #console.log current
     current_data = Visits.find(current, sort).fetch()
     #previous_data = Visits.find(previous, sort).fetch()
-    result = analyze(@data.funnel, current_data)
+    result = analyze(@data.field, @data.value, @data.funnel, current_data)
     interpret result
 
 Template.analysis_visits.helpers
