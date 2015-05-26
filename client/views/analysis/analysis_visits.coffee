@@ -73,11 +73,11 @@ getOutliers = (filter_key, filter_value, funnel, data) ->
     cvr = []
     i = 0
     # Take the last same DoW
-    while i < 1
+    while i < 2
         if data[i] > top
-            success.push i
+            success[i] = i
         if data[i] < bottom
-            warn.push i
+            warn[i] = i
         i++
     outliers.mean = mean
     outliers.stdev = sd
@@ -85,7 +85,7 @@ getOutliers = (filter_key, filter_value, funnel, data) ->
     outliers.max = max
     outliers.success = success
     outliers.warn = warn
-    #console.log outliers
+    console.log outliers
     outliers
 
 interpret = (results) ->
@@ -129,7 +129,7 @@ analyze = (filter_key, filter_value, funnel,  current) ->
         if current[i].dayOfWeek == dow
             val = current[i][funnel]
             if val > 0
-                result.push current[i][funnel]
+                result.unshift current[i][funnel]
         i++
     #console.log result
     outliers = getOutliers filter_key, filter_value, funnel, result
