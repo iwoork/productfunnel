@@ -27,7 +27,7 @@ renderChart = ->
                     width: 2
                     label:
                         text: 'R2015.08.01'
-                    value: 3.4
+                    value: Date.UTC(2015,4,3)
                 }
             ]
         yAxis: [

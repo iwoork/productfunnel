@@ -36,9 +36,7 @@ Meteor.methods
             visit = []
             conversion = []
             dow = []
-            console.log record
             date = Date.parse(record._id.year + '-' + record._id.month + '-' + record._id.day)
-            console.log date
             funnel_data = record[funnel]
 
             # Visits

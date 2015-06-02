@@ -23,15 +23,15 @@
             {{#each results}}
             <tr>
                 <td>{{this._id}}</td>
-                <td class="text-center">{{> analysis_visits field='user_context_name' value=this._id funnel='home'}}</td>
+                <td class="text-center">{{> analysis_visits field='c302' value=this._id funnel='home'}}</td>
                 <td class="text-center"><p><i class="fa fa-long-arrow-right"></i></p></td>
-                <td class="text-center">{{> analysis_visits field='user_context_name' value=this._id funnel='search'}}</td>
+                <td class="text-center">{{> analysis_visits field='c302' value=this._id funnel='search'}}</td>
                 <td class="text-center"><p><i class="fa fa-long-arrow-right"></i></p></td>
-                <td class="text-center">{{> analysis_visits field='user_context_name' value=this._id funnel='pdp'}}</td>
+                <td class="text-center">{{> analysis_visits field='c302' value=this._id funnel='pdp'}}</td>
                 <td class="text-center"><p><i class="fa fa-long-arrow-right"></i></p></td>
-                <td class="text-center">{{> analysis_visits field='user_context_name' value=this._id funnel='bf'}}</td>
+                <td class="text-center">{{> analysis_visits field='c302' value=this._id funnel='bf'}}</td>
                 <td class="text-center"><p><i class="fa fa-long-arrow-right"></i></p></td>
-                <td class="text-center">{{> analysis_visits field='user_context_name' value=this._id funnel='conf'}}</td>
+                <td class="text-center">{{> analysis_visits field='c302' value=this._id funnel='conf'}}</td>
             </tr>
             {{/each}}
             {{else}}
