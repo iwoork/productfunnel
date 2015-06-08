@@ -5,7 +5,7 @@ class @ChannelController extends RouteController
         y = now.getFullYear()
         d = now.getDate()
         current_end = new Date(y + '-' + m  + '-' + d) # today
-        current_start = new Date(moment(current_end).subtract("days", 59)) # 2 months
+        current_start = new Date(moment(current_end).subtract("days", 240)) # 2 months
         previous_end = new Date(moment(current_end).subtract("year", 1))
         previous_start = new Date(moment(current_start).subtract("year", 1))
         console.log "ce: " + current_end
