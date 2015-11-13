@@ -8,7 +8,6 @@ insecure
 coffeescript
 less
 iron:router
-nemo64:bootstrap
 maazalik:highcharts
 fortawesome:fontawesome
 mrt:moment
@@ -44,3 +43,4 @@ random
 ejson
 spacebars
 check
+huttonr:bootstrap3

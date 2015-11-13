@@ -102,7 +102,6 @@ Template.homepage.helpers
             {
                 name: "THIS YEAR"
                 color: 'red'
-                data: Meteor.settings.public.sample.visitsb #sample data
             }
         ]
 
@@ -136,11 +135,9 @@ Template.homepage.helpers
             {
                 name: "LAST YEAR"
                 color: 'orange'
-                data: Meteor.settings.public.sample.visitsa #sample data
             }
             {
                 name: "THIS YEAR"
                 color: 'red'
-                data: Meteor.settings.public.sample.visitsb #sample data
             }
         ]
