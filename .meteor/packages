@@ -4,12 +4,10 @@
 # 'meteor add' and 'meteor remove' will edit this file for you,
 # but you can also edit it by hand.
 
-meteor-platform
 insecure
 coffeescript
 less
 iron:router
-nemo64:bootstrap
 maazalik:highcharts
 fortawesome:fontawesome
 mrt:moment
@@ -31,3 +29,18 @@ simple:reactive-method
 multiply:iron-router-progress
 yogiben:admin
 pcel:loading
+standard-minifiers
+meteor-base
+mobile-experience
+mongo
+blaze-html-templates
+session
+jquery
+tracker
+logging
+reload
+random
+ejson
+spacebars
+check
+huttonr:bootstrap3
