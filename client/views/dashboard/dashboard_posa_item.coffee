@@ -12,8 +12,8 @@ Template.dashboard_posa_item.created = ->
     # Set initial dates
     #start_date = new Date(moment().subtract("days", 20))
     #end_date = new Date()
-    start_date = new Date('2012-02-10')
-    end_date = new Date('2012-12-31')
+    start_date = new Date('2015-01-01')
+    end_date = new Date('2015-12-31')
 
     posvar = @pos
     posvar = @pos = new ReactiveVar()  unless posvar
