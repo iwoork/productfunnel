@@ -53,7 +53,7 @@
       "carousel": true,
       "collapse": true,
       "dropdown": true,
-      "modal": true,
+      "modal": false,
       "popover": true,
       "scrollspy": true,
       "tab": true,
