@@ -16,7 +16,6 @@ lepozepo:accounting
 http
 meteorhacks:aggregate
 aldeed:simple-schema
-meteorhacks:fast-render
 zimme:iron-router-active
 reactive-var
 mrt:loading
