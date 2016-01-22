@@ -16,27 +16,38 @@
             <!-- Collect the nav links, forms, and other content for toggling -->
             <div class="collapse navbar-collapse" id="main-menu">
                 <ul class="nav navbar-nav navbar-left">
-                    <li class="{{isActiveRoute regex='dashboard'}}">
-                        <a href="/dashboard"><i class="fa fa-dashboard"></i> Dashboard</a>
-                    </li>
-                    <li class="{{isActiveRoute regex='pos'}}">
-                        <a href="/pos"><i class="fa fa-filter"></i> Point of Sales</a>
-                    </li>
-                    <li class="{{isActiveRoute regex='channels'}}">
-                        <a href="/channels"><i class="fa fa-bar-chart"></i> Marketing Channel</a>
-                    </li>
-                    <li class="{{isActiveRoute regex='platforms'}}">
-                        <a href="/platforms"><i class="fa fa-desktop"></i> Platforms</a>
-                    </li>
-                    <li class="{{isActiveRoute regex='browsers'}}">
-                        <a href="/browsers"><i class="fa fa-globe"></i> Browsers</a>
-                    </li>
-                    <li class="{{isActiveRoute regex='entries'}}">
-                        <a href="/entries"><i class="fa fa-line-chart"></i> Entry pages</a>
+                    <li class="dropdown">
+                        <a class="dropdown-toggle" data-toggle="dropdown" href="#"><i class="fa fa-dashboard"></i> Dashboard <span class="caret"></span></a>
+                        <ul class="dropdown-menu">
+                            <li class="{{isActiveRoute regex='pos'}}">
+                                <a href="/pos"><i class="fa fa-filter"></i> Point of Sales</a>
+                            </li>
+                            <li class="{{isActiveRoute regex='channels'}}">
+                                <a href="/channels"><i class="fa fa-bar-chart"></i> Marketing Channel</a>
+                            </li>
+                            <li class="{{isActiveRoute regex='platforms'}}">
+                                <a href="/platforms"><i class="fa fa-desktop"></i> Platforms</a>
+                            </li>
+                            <li class="{{isActiveRoute regex='browsers'}}">
+                                <a href="/browsers"><i class="fa fa-globe"></i> Browsers</a>
+                            </li>
+                            <li class="{{isActiveRoute regex='entries'}}">
+                                <a href="/entries"><i class="fa fa-line-chart"></i> Entry pages</a>
+                            </li>
+                        </ul>
                     </li>
                 </ul>
-                <ul class="nav navbar-nav navbar-right col-sm-3">
-                    <li>{{> datepicker}}</li>
+                <ul class="nav navbar-nav navbar-right">
+                    <li class="dropdown">
+                        <a class="dropdown-toggle" data-toggle="dropdown" href="#">Configure <span class="caret"></span></a>
+                        <ul class="dropdown-menu">
+                            <li>
+                                <a href="/steps">Steps</a>
+                                <a href="/funnels">Funnels</a>
+                                <a href="/dimensions">Dimensions</a>
+                            </li>
+                        </ul>
+                    </li>
                 </ul>
             </div>
             <!-- /.navbar-collapse -->
