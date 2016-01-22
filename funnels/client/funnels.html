@@ -1,0 +1,35 @@
+<template name="funnels">
+    <div class="pull-right">
+        {{#afModal class="btn btn-primary" collection="Funnels" operation="insert"}}
+            <i class="fa fa-plus"></i> Add new funnel
+        {{/afModal}}
+    </div>
+    {{> autoformModals}}
+    <h1>Funnels</h1>
+    {{#with funnels}}
+        {{#if funnels.length}}
+            <table class="table table-striped">
+                <thead>
+                    <tr>
+                        <th class="text-center">Funnel name</th>
+                        <th class="text-center">Actions</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {{#each funnels}}
+                        <tr>
+                            <td>{{name}}</td>
+                            <td class="text-center">
+                                {{#afModal class="btn btn-info btn-xs" collection="Pages" operation="update" doc=_id}}
+                                    <i class="fa fa-pencil"></i> Edit page
+                                {{/afModal}}
+                            </td>
+                        </tr>
+                    {{/each}}
+                </tbody>
+            </table>
+        {{else}}
+            <p>You need to be logged in and add a site first</p>
+        {{/if}}
+    {{/with}}
+</template>

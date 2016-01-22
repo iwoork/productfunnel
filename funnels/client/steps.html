@@ -1,0 +1,35 @@
+<template name="steps">
+    <div class="pull-right">
+        {{#afModal class="btn btn-primary" collection="Steps" operation="insert"}}
+            <i class="fa fa-plus"></i> Add new step
+        {{/afModal}}
+    </div>
+    {{> autoformModals}}
+    <h1>Steps</h1>
+    {{#with steps}}
+        {{#if steps.length}}
+            <table class="table table-striped">
+                <thead>
+                    <tr>
+                        <th class="text-center">Step name</th>
+                        <th class="text-center">Actions</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {{#each steps}}
+                        <tr>
+                            <td>{{name}}</td>
+                            <td class="text-center">
+                                {{#afModal class="btn btn-info btn-xs" collection="Steps" operation="update" doc=_id}}
+                                    <i class="fa fa-pencil"></i> Edit page
+                                {{/afModal}}
+                            </td>
+                        </tr>
+                    {{/each}}
+                </tbody>
+            </table>
+        {{else}}
+            <p>You need to be logged in and add a site first</p>
+        {{/if}}
+    {{/with}}
+</template>
