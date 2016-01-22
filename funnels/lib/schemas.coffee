@@ -4,12 +4,9 @@ Schemas.Steps = new SimpleSchema(
     name:
         type: String
         label: 'Step name'
-    pattern:
-        type: String
-        label: 'Step description'
     url:
         type: String
-        label: 'URL'
+        label: 'URL pattern'
 )
 Steps.attachSchema(Schemas.Steps)
 
