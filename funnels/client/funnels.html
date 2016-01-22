@@ -8,10 +8,11 @@
     <h1>Funnels</h1>
     {{#with funnels}}
         {{#if funnels.length}}
-            <table class="table table-striped">
+            <table class="table table-striped table-funnel">
                 <thead>
                     <tr>
-                        <th class="text-center">Funnel name</th>
+                        <th>Funnel name</th>
+                        <th>Flow</th>
                         <th class="text-center">Actions</th>
                     </tr>
                 </thead>
@@ -19,10 +20,16 @@
                     {{#each funnels}}
                         <tr>
                             <td>{{name}}</td>
+                            <td>
+                                {{#each steps}}
+                                    <span class="label label-default">{{name}}</span>
+                                {{/each}}
+                            </td>
                             <td class="text-center">
                                 {{#afModal class="btn btn-info btn-xs" collection="Funnels" operation="update" doc=_id}}
                                     <i class="fa fa-pencil"></i> Edit funnel
                                 {{/afModal}}
+                                <a href="/funnels/{{_id}}" class="btn btn-primary btn-xs"><i class="fa fa-filter"></i> Funnel Analysis</a>
                             </td>
                         </tr>
                     {{/each}}
