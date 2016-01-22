@@ -7,5 +7,8 @@ Schemas.Dimensions = new SimpleSchema(
     pattern:
         type: String
         label: 'Dimension description'
+    values:
+        type: [String]
+        label: 'Values'
 )
 Dimensions.attachSchema(Schemas.Dimensions)

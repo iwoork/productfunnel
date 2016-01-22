@@ -12,6 +12,7 @@
                 <thead>
                     <tr>
                         <th class="text-center">Dimension name</th>
+                        <th class="text-center">Values</th>
                         <th class="text-center">Actions</th>
                     </tr>
                 </thead>
@@ -19,6 +20,11 @@
                     {{#each dimensions}}
                         <tr>
                             <td>{{name}}</td>
+                            <td>
+                                {{#each values}}
+                                    <span class="label label-default">{{this}}</span>
+                                {{/each}}
+                            </td>
                             <td class="text-center">
                                 {{#afModal class="btn btn-info btn-xs" collection="Dimensions" operation="update" doc=_id}}
                                     <i class="fa fa-pencil"></i> Edit dimension
