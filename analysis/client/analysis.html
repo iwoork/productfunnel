@@ -1,0 +1,13 @@
+<template name="analysis">
+    <h1>Analysis</h1>
+    {{#each steps}}
+        <div class="panel panel-info">
+            <div class="panel-heading">
+                <h3 class="panel-title">{{name}}</h3>
+            </div>
+            <div class="panel-body">
+                {{> highchartsHelper chartId=name chartWidth="100%" charHeight="100%" chartObject=stepChart}}
+            </div>
+        </div>
+    {{/each}}
+</template>

@@ -4,9 +4,15 @@ Schemas.Steps = new SimpleSchema(
     name:
         type: String
         label: 'Step name'
-    url:
+    field:
         type: String
-        label: 'URL pattern'
+        label: 'Field name'
+    pattern:
+        type: String
+        label: 'Pattern match'
+    weight:
+        type: String
+        label: 'Weight'
 )
 Steps.attachSchema(Schemas.Steps)
 
@@ -21,3 +27,16 @@ Schemas.Funnels = new SimpleSchema(
         type: [Schemas.Steps]
 )
 Funnels.attachSchema(Schemas.Funnels)
+
+Schemas.Filters = new SimpleSchema(
+    name:
+        type: String
+        label: 'Filter name'
+    field:
+        type: String
+        label: 'Field name'
+    group:
+        type: Boolean
+        label: 'Grouped?'
+)
+Filters.attachSchema(Schemas.Filters)
