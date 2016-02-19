@@ -1,3 +1,3 @@
 Template.funnels.helpers
-    'funnels': ->
+    funnels: ->
         Funnels.find().fetch()

@@ -1,7 +1,6 @@
 Template.analysis.helpers
-    'steps': ->
-        funnel = Funnels.findOne()
-        funnel.steps
+    funnel: ->
+        Session.get 'funnel'
     stepChart: ->
         chart:
             type: 'spline'

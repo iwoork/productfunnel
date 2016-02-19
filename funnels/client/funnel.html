@@ -1,0 +1,19 @@
+<template name="funnel">
+<tr>
+    <td>{{name}}</td>
+    <td>
+        {{#each steps}}
+            <span class="label label-default">{{name}}</span>
+        {{/each}}
+    </td>
+    <td>
+        February 17, 2016 - 6:00AM GMT
+    </td>
+    <td class="text-center">
+        {{#afModal class="btn btn-info btn-xs" collection="Funnels" operation="update" doc=_id}}
+            <i class="fa fa-pencil"></i> Edit funnel
+        {{/afModal}}
+        <a href="/analysis/{{_id}}" class="btn btn-primary btn-xs"><i class="fa fa-filter"></i> Funnel Analysis</a>
+    </td>
+</tr>
+</template>

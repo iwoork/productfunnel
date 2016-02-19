@@ -19,24 +19,21 @@
                 </thead>
                 <tbody>
                     {{#each funnels}}
-                        <tr>
-                            <td>{{name}}</td>
-                            <td>
-                                {{#each steps}}
-                                    <span class="label label-default">{{name}}</span>
-                                {{/each}}
-                            </td>
-                            <td>
-                                February 17, 2016 - 6:00AM GMT
-                            </td>
-                            <td class="text-center">
-                                {{#afModal class="btn btn-info btn-xs" collection="Funnels" operation="update" doc=_id}}
-                                    <i class="fa fa-pencil"></i> Edit funnel
-                                {{/afModal}}
-                                <a href="/analysis/{{_id}}" class="btn btn-primary btn-xs"><i class="fa fa-filter"></i> Funnel Analysis</a>
-                            </td>
-                        </tr>
+                        {{> funnel}}
                     {{/each}}
+                    <div class="modal fade query-modal" tabindex="-1" role="dialog" aria-labelledby="querymodal">
+                        <div class="modal-dialog modal-lg">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                                     <h4 class="modal-title" id="querymodal">Query</h4>
+                                </div>
+                                <div class="modal-body">
+                                    {{> query}}
+                                </div>
+                            </div>
+                        </div>
+                    </div>
                 </tbody>
             </table>
         {{else}}

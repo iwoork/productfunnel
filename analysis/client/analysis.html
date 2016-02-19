@@ -1,13 +1,35 @@
 <template name="analysis">
-    <h1>Analysis</h1>
-    {{#each steps}}
-        <div class="panel panel-info">
-            <div class="panel-heading">
-                <h3 class="panel-title">{{name}}</h3>
+    {{#with funnel}}
+        <div class="pull-right">
+            {{#afModal class="btn btn-info btn-xs" collection="Funnels" operation="update" doc=_id}}
+                <i class="fa fa-pencil"></i> Edit funnel
+            {{/afModal}}
+            <a href="#" class="btn btn-info btn-xs viewquery" data-toggle="modal" data-target=".query-modal"><i class="fa fa-eye"></i> View query</a>
+        </div>
+        <h1>Analysis: {{funnel.name}}</h1>
+        {{#each funnel.steps}}
+            <div class="panel panel-info">
+                <div class="panel-heading">
+                    <h3 class="panel-title">{{name}}</h3>
+                </div>
+                <div class="panel-body">
+                    {{> highchartsHelper chartId=name chartWidth="100%" charHeight="100%" chartObject=stepChart}}
+                </div>
             </div>
-            <div class="panel-body">
-                {{> highchartsHelper chartId=name chartWidth="100%" charHeight="100%" chartObject=stepChart}}
+        {{/each}}
+        <div class="modal fade query-modal" tabindex="-1" role="dialog" aria-labelledby="querymodal">
+            <div class="modal-dialog modal-lg">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                         <h4 class="modal-title" id="querymodal">Query</h4>
+                    </div>
+                    <div class="modal-body">
+                        {{> query}}
+                    </div>
+                </div>
             </div>
         </div>
-    {{/each}}
+        {{> autoformModals}}
+    {{/with}}
 </template>

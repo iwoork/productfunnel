@@ -16,6 +16,18 @@ Schemas.Steps = new SimpleSchema(
 )
 Steps.attachSchema(Schemas.Steps)
 
+Schemas.Conditions = new SimpleSchema(
+    field:
+        type: String
+        label: 'Field name'
+    operator:
+        type: String
+        label: 'Operator'
+    value:
+        type: String
+        label: 'Value'
+)
+
 Schemas.Funnels = new SimpleSchema(
     name:
         type: String
@@ -25,6 +37,8 @@ Schemas.Funnels = new SimpleSchema(
         label: 'Funnel description'
     steps:
         type: [Schemas.Steps]
+    conditions:
+        type: [Schemas.Conditions]
 )
 Funnels.attachSchema(Schemas.Funnels)
 

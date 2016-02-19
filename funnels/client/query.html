@@ -1,0 +1,25 @@
+<template name="query">
+<pre>
+SELECT
+    {{fields}},
+    {{steps}}
+FROM
+    (SELECT
+        {{fields}},
+        {{progression}}
+    FROM
+        (SELECT
+            {{fields}},
+            {{values}}
+        FROM
+            etldata.etl_hcom_hit_data_cleansed
+        WHERE
+            {{conditions}}
+        GROUP BY
+            {{groups}}
+    GROUP BY
+        {{groups}}
+GROUP BY
+    {{groups}}
+</pre>
+</template>
