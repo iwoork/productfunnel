@@ -15,3 +15,16 @@ class @AnalysisController extends AppController
     action: () ->
         console.log 'AnalysisController: action'
         @render()
+
+
+plotData = (data) ->
+    console.log 'Chart called'
+    chart = $('.modal-chart').highcharts()
+    #Reset data points
+    chart.get('continuance').setData []
+
+    # Continuance
+    _.each(data.visits, (point) ->
+        console.log point
+        chart.get('continuance').addPoint(point)
+    )

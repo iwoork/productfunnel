@@ -35,6 +35,9 @@ Schemas.Funnels = new SimpleSchema(
     pattern:
         type: String
         label: 'Funnel description'
+    table:
+        type: String
+        label: 'Table name (no spaces and only _)'
     steps:
         type: [Schemas.Steps]
     conditions:

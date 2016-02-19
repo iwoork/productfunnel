@@ -6,19 +6,25 @@ SELECT
 FROM
     (SELECT
         {{fields}},
+        visit_ID,
         {{progression}}
     FROM
         (SELECT
             {{fields}},
+            CONCAT(visitor_id, visit_number) as visit_ID,
             {{values}}
         FROM
             etldata.etl_hcom_hit_data_cleansed
         WHERE
             {{conditions}}
         GROUP BY
+            CONCAT(visitor_id, visit_number),
             {{groups}}
+        ) i
     GROUP BY
+        visit_ID,
         {{groups}}
+    ) o
 GROUP BY
     {{groups}}
 </pre>

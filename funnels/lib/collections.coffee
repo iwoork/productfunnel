@@ -1,6 +1,7 @@
 @Funnels = new Mongo.Collection('funnels')
 @Steps = new Mongo.Collection('steps')
 @Filters = new Mongo.Collection('filters')
+@Funnels.friendlySlugs()
 
 @Funnels.allow
     insert: ->

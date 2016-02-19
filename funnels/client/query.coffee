@@ -33,9 +33,9 @@ Template.query.helpers
         progression = []
         steps = Session.get 'funnel'
         _.each(steps.steps, (step, index)->
-            stepindex=0
+            stepindex=-1
             condition = []
-            while stepindex < index + 1
+            while stepindex < index
                 stepindex++
                 statement = 'STEP' + stepindex + '=1'
                 console.log statement
