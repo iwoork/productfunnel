@@ -28,23 +28,6 @@ Schemas.Conditions = new SimpleSchema(
         label: 'Value'
 )
 
-Schemas.Funnels = new SimpleSchema(
-    name:
-        type: String
-        label: 'Funnel name'
-    description:
-        type: String
-        label: 'Funnel description'
-    table:
-        type: String
-        label: 'Table name (no spaces and only _)'
-    steps:
-        type: [Schemas.Steps]
-    conditions:
-        type: [Schemas.Conditions]
-)
-Funnels.attachSchema(Schemas.Funnels)
-
 Schemas.Filters = new SimpleSchema(
     name:
         type: String
@@ -55,8 +38,26 @@ Schemas.Filters = new SimpleSchema(
     group:
         type: Boolean
         label: 'Grouped?'
-    facets:
-        type: [String]
 
 )
-Filters.attachSchema(Schemas.Filters)
+
+Schemas.Funnels = new SimpleSchema(
+    name:
+        type: String
+        label: 'Funnel name'
+    description:
+        type: String
+        label: 'Funnel description'
+    table:
+        type: String
+        label: 'Table name (no spaces and only _)'
+    filters:
+        type: [Schemas.Filters]
+    steps:
+        type: [Schemas.Steps]
+    conditions:
+        type: [Schemas.Conditions]
+)
+Funnels.attachSchema(Schemas.Funnels)
+
+

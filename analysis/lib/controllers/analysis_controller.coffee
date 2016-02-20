@@ -2,7 +2,6 @@ class @AnalysisController extends AppController
     waitOn: ->
         [
             Meteor.subscribe 'funnels'
-            Meteor.subscribe 'filters'
         ]
 
     onBeforeAction: ->

@@ -1,3 +1,4 @@
 Template.facets.helpers
     facets: ->
-        Filters.find().fetch()
+        funnel = Session.get 'funnel'
+        funnel.filters

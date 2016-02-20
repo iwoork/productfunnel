@@ -15,12 +15,4 @@ Router.map ->
                 to: 'aside'
             header:
                 to: 'header'
-    @route 'filters',
-        path: '/filters'
-        controller: FiltersController
-        yieldTemplates:
-            empty:
-                to: 'aside'
-            header:
-                to: 'header'
 

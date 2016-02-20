@@ -1,15 +1,15 @@
 Template.query.helpers
     fields: ->
-        filters = Filters.find().fetch()
+        funnel = Session.get 'funnel'
         fields = []
-        _.each(filters, (filter)->
+        _.each(funnel.filters, (filter)->
             fields.push filter.field
         )
         fields.join(',\n\t')
     steps: ->
-        steps = Session.get 'funnel'
+        funnel = Session.get 'funnel'
         fields = []
-        _.each(steps.steps, (step, index)->
+        _.each(funnel.steps, (step, index)->
             fields.push 'SUM(STEP' + index + ') AS STEP' + index
         )
         fields.join(',\n\t')
@@ -21,18 +21,17 @@ Template.query.helpers
         )
         fields.join(' AND \n\t')
     groups: ->
-        filters = Filters.find().fetch()
+        funnel = Session.get 'funnel'
         fields = []
-        _.each(filters, (filter)->
-            console.log filter
+        _.each(funnel.filters, (filter)->
             if filter.group
                 fields.push filter.field
         )
         fields.join(',\n\t')
     progression: ->
         progression = []
-        steps = Session.get 'funnel'
-        _.each(steps.steps, (step, index)->
+        funnel = Session.get 'funnel'
+        _.each(funnel.steps, (step, index)->
             stepindex=-1
             condition = []
             while stepindex < index
@@ -46,8 +45,8 @@ Template.query.helpers
         progression.join(',\n\t')   
     values: ->
         progression = []
-        steps = Session.get 'funnel'
-        _.each(steps.steps, (step, index)->
+        funnel = Session.get 'funnel'
+        _.each(funnel.steps, (step, index)->
             progression.push 'MAX(CASE WHEN ' + step.field + '="' + step.pattern + '" THEN 1 ELSE 0 END) as STEP' + index
         )
         progression.join(',\n\t')

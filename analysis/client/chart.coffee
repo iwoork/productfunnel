@@ -6,12 +6,27 @@ Template.chart.onRendered =>
         # Loop
         _.each(result, (point) ->
             #console.log point
-            count = [new Date(point.local_date), point.count]
-            continuance = [new Date(point.local_date), point.continuance * 100]
+            date = Date(point.local_date + 'Z')
+            count = [date, point.count]
+            continuance = [date, point.continuance * 100]
             chart.get('count').addPoint(count,false)
             chart.get('continuance').addPoint(continuance,false)
             chart.redraw()
-          )
+        )
+
+        # Add releases
+        plotOptions = {
+            id: step,
+            color: '#FF0000',
+            dashStyle: 'ShortDash',
+            width: 2,
+            value: new Date('2016-02-03'),
+            zIndex: 0,
+            label : {
+                text : 'Goal'
+            }
+        }
+        chart.yAxis[0].addPlotLine(plotOptions)
     return
 
 Template.chart.helpers
