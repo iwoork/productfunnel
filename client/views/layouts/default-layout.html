@@ -1,11 +1,9 @@
 <template name="layout">
     {{> yield region='header'}}
 
-    <div id="content" class="container page-{{route}}">
-        <div class="row">
-            <div id="main-content">
-                {{> yield}}
-            </div>
+    <div id="content" class="container-fluid page-{{route}}">
+        <div id="main-content">
+            {{> yield}}
         </div>
     </div>
     {{> modal}}

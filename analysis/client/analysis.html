@@ -7,29 +7,36 @@
             <a href="#" class="btn btn-info btn-xs viewquery" data-toggle="modal" data-target=".query-modal"><i class="fa fa-eye"></i> View query</a>
         </div>
         <h1>Analysis: {{funnel.name}}</h1>
-        {{#each funnel.steps}}
-            <div class="panel panel-info">
-                <div class="panel-heading">
-                    <h3 class="panel-title">{{name}}</h3>
-                </div>
-                <div class="panel-body">
-                    {{> highchartsHelper chartId=name chartWidth="100%" charHeight="100%" chartObject=stepChart}}
-                </div>
-            </div>
-        {{/each}}
-        <div class="modal fade query-modal" tabindex="-1" role="dialog" aria-labelledby="querymodal">
-            <div class="modal-dialog modal-lg">
-                <div class="modal-content">
-                    <div class="modal-header">
-                        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                         <h4 class="modal-title" id="querymodal">Query</h4>
-                    </div>
-                    <div class="modal-body">
-                        {{> query}}
-                    </div>
-                </div>
+        <div class="col-md-3">
+            <div data-spy="affix" data-offset-top="20" data-offset-bottom="20">
+                {{> facets}}
             </div>
         </div>
-        {{> autoformModals}}
+        <div class="col-md-9">
+            {{#each funnel.steps}}
+                <div class="panel panel-info">
+                    <div class="panel-heading">
+                        <h3 class="panel-title">Entered {{name}}</h3>
+                    </div>
+                    <div class="panel-body">
+                        {{> chart name=name step=@index}}
+                    </div>
+                </div>
+            {{/each}}
+            <div class="modal fade query-modal" tabindex="-1" role="dialog" aria-labelledby="querymodal">
+                <div class="modal-dialog modal-lg">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                             <h4 class="modal-title" id="querymodal">Query</h4>
+                        </div>
+                        <div class="modal-body">
+                            {{> query}}
+                        </div>
+                    </div>
+                </div>
+            </div>
+            {{> autoformModals}}
+        </div>
     {{/with}}
 </template>

@@ -1,0 +1,18 @@
+<template name="facets">
+    <div class="panel-group" id="facets" role="tablist" aria-multiselectable="true">
+        {{#each facets}}
+            <div class="panel panel-default">
+                <div class="panel-heading" id="h{{field}}">
+                    <h4 class="panel-title">
+                        <a role="button" data-toggle="collapse" data-parent="#facets" href="#{{field}}" aria-expanded="true" aria-controls="{{field}}">{{name}}</a>
+                    </h4>
+                </div>
+                <div id="{{field}}" class="panel-collapse collapse" role="tabpanel" aria-labelledby="h{{field}}">
+                    <div class="panel-body">
+                        test
+                    </div>
+                </div>
+            </div>
+        {{/each}}
+    </div>
+</template>

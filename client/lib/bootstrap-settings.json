@@ -47,18 +47,18 @@
 
   "javascript": {
     "modules": {
-      "affix": true,
+      "affix": false,
       "alert": true,
       "button": true,
       "carousel": true,
-      "collapse": true,
+      "collapse": false,
       "dropdown": false,
       "modal": false,
       "popover": true,
       "scrollspy": true,
       "tab": true,
       "tooltip": true,
-      "transition": true
+      "transition": false
     }
   }
 }

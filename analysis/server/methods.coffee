@@ -41,32 +41,14 @@ calculateContinuance = (step, filter) ->
     console.log pipeline
     results = Analysis.aggregate(pipeline)
 
-calculateStatus = (step, filter) ->
-    defaults = {}
-
-    pipeline = [
-        {
-            $match:
-                filter or defaults
-        }
-        {
-            $group:
-                _id:
-                    local_date: "$local_date"
-                visits:
-                    $sum: step
-        }
-        {
-            $sort:
-                '_id.local_date': 1
-        }
-    ]
-    console.log pipeline
-    results = Analysis.aggregate(pipeline)
-
 Meteor.methods
-    'trend': (step, filter) ->
-        calculateStatus(step, filter)
     'continuance': (step, filter) ->
         calculateContinuance(step, filter)
 
+    'fields': (field) ->
+        filters = Analysis.find().fetch()
+        results = _.uniq(filters, false, (d) ->
+          d.field
+        )
+        fields = _.pluck(results, 'field')
+        fields

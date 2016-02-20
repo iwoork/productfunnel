@@ -32,7 +32,7 @@ Schemas.Funnels = new SimpleSchema(
     name:
         type: String
         label: 'Funnel name'
-    pattern:
+    description:
         type: String
         label: 'Funnel description'
     table:
@@ -55,5 +55,8 @@ Schemas.Filters = new SimpleSchema(
     group:
         type: Boolean
         label: 'Grouped?'
+    facets:
+        type: [String]
+
 )
 Filters.attachSchema(Schemas.Filters)

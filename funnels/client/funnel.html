@@ -1,10 +1,14 @@
 <template name="funnel">
 <tr>
-    <td>{{name}}</td>
+    <td>
+        <p>{{name}}</p>
+        <p><small>{{description}}</small></p>
+    </td>
     <td>
         {{#each steps}}
-            <span class="label label-default">{{name}}</span>
+           <span class="label label-default">{{name}}</span> <i class="fa fa-caret-right"></i>
         {{/each}}
+            <span class="label label-success">Order</span>
     </td>
     <td>
         February 17, 2016 - 6:00AM GMT
