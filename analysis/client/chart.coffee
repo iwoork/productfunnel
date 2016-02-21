@@ -3,10 +3,34 @@ Template.chart.onRendered =>
     step = Template.instance().data.step
     chart = $('#' + name).highcharts()
     Meteor.call 'continuance', step, {}, (err, result) ->
+        # Add releases
+        plotLine = {
+            id: 'test'
+            color: 'orange',
+            dashStyle: 'shortDashDot'
+            width: 2
+            value: new Date('1970-02-01')
+            zIndex: 2
+            label:
+                text: 'R2016.01'
+                verticalAlign: 'top'
+                textAlign: 'left'
+        }
+        plotBand = {
+            from: new Date('1970-02-03'),
+            to: new Date('1970-02-10'),
+            color: '#FCFFC5',
+            id: 'plot-band-1'
+            label:
+                text: 'Chinese New Year'
+        }
+        chart.xAxis[0].addPlotLine(plotLine)
+        chart.xAxis[0].addPlotBand(plotBand)
+
         # Loop
         _.each(result, (point) ->
             #console.log point
-            date = Date(point.local_date + 'Z')
+            date = new Date(point.local_date)
             count = [date, point.count]
             continuance = [date, point.continuance * 100]
             chart.get('count').addPoint(count,false)
@@ -14,19 +38,6 @@ Template.chart.onRendered =>
             chart.redraw()
         )
 
-        # Add releases
-        plotOptions = {
-            id: step,
-            color: '#FF0000',
-            dashStyle: 'ShortDash',
-            width: 2,
-            value: new Date('2016-02-03'),
-            zIndex: 0,
-            label : {
-                text : 'Goal'
-            }
-        }
-        chart.yAxis[0].addPlotLine(plotOptions)
     return
 
 Template.chart.helpers
@@ -34,8 +45,10 @@ Template.chart.helpers
         chart:
             animation: Highcharts.svg
             zoomType: 'x'
-        title: text: 'Count vs Continuance'
+        title: text: 'Volume vs Continuance'
         credits: enabled: false
+        tooltip:
+            shared: true
         xAxis:
             title: 
                 text: 'Date'
@@ -62,7 +75,7 @@ Template.chart.helpers
                 name: 'Count'
                 type: 'column'
                 color: '#bce8f1'
-                pointInterval: 24 * 3600 * 1000
+                pointInterval: 24 * 3600 * 1000 
                 labels: formatter: ->
                     @value + 'k'
             }
@@ -71,7 +84,7 @@ Template.chart.helpers
                 name: 'Continuance'
                 type: 'spline'
                 color: 'red'
-                pointInterval: 24 * 3600 * 1000
+                pointInterval: 24 * 3600 * 1000 
                 labels: formatter: ->
                     (@value * 100) + "&#37;"
            }
