@@ -2,7 +2,8 @@ Template.chart.onRendered =>
     name = Template.instance().data.name
     step = Template.instance().data.step
     chart = $('#' + name).highcharts()
-    Meteor.call 'continuance', step, {}, (err, result) ->
+    funnel = Session.get 'funnel'
+    Meteor.call 'continuance', step, {key: funnel.key}, (err, result) ->
         # Add releases
         plotLine = {
             id: 'test'
@@ -72,7 +73,7 @@ Template.chart.helpers
             {
                 id: 'count'
                 yAxis: 1
-                name: 'Count'
+                name: 'Volume'
                 type: 'column'
                 color: '#bce8f1'
                 pointInterval: 24 * 3600 * 1000 

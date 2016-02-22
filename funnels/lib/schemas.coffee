@@ -51,9 +51,9 @@ Schemas.Funnels = new SimpleSchema(
     database:
         type: String
         label: 'Source (database.name format)'
-    table:
+    key:
         type: String
-        label: 'Table name (no spaces and only _)'
+        label: 'Funnel key (no spaces and only _)'
     filters:
         type: [Schemas.Filters]
     steps:

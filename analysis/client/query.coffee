@@ -53,3 +53,6 @@ Template.query.helpers
     source: ->
         funnel = Session.get 'funnel'
         funnel.database
+    key: ->
+        funnel = Session.get 'funnel'
+        funnel.key
