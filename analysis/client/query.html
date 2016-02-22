@@ -14,7 +14,7 @@ FROM
             CONCAT(visitor_id, visit_number) as visit_ID,
             {{values}}
         FROM
-            etldata.etl_hcom_hit_data_cleansed
+            {{source}}
         WHERE
             {{conditions}}
         GROUP BY

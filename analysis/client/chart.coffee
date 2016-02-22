@@ -29,8 +29,8 @@ Template.chart.onRendered =>
 
         # Loop
         _.each(result, (point) ->
-            #console.log point
-            date = new Date(point.local_date)
+            console.log point
+            date = moment(point.local_date).format('MM/DD/YYYY')
             count = [date, point.count]
             continuance = [date, point.continuance * 100]
             chart.get('count').addPoint(count,false)
@@ -60,7 +60,7 @@ Template.chart.helpers
                 opposite: true
             }
             {
-                title: text: 'Count'
+                title: text: 'Volume'
             }
         ]
         plotOptions: area:

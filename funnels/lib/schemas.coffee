@@ -48,6 +48,9 @@ Schemas.Funnels = new SimpleSchema(
     description:
         type: String
         label: 'Funnel description'
+    database:
+        type: String
+        label: 'Source (database.name format)'
     table:
         type: String
         label: 'Table name (no spaces and only _)'

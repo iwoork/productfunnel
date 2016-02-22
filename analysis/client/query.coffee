@@ -50,3 +50,6 @@ Template.query.helpers
             progression.push 'MAX(CASE WHEN ' + step.field + '="' + step.pattern + '" THEN 1 ELSE 0 END) as STEP' + index
         )
         progression.join(',\n\t')
+    source: ->
+        funnel = Session.get 'funnel'
+        funnel.database
