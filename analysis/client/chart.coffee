@@ -19,7 +19,7 @@ Template.chart.onRendered =>
         plotBand = {
             from: new Date('1970-02-03'),
             to: new Date('1970-02-10'),
-            color: '#FCFFC5',
+            color: '#f7f9e4',
             id: 'plot-band-1'
             label:
                 text: 'Chinese New Year'
