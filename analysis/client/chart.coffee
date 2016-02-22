@@ -10,10 +10,10 @@ Template.chart.onRendered =>
             color: 'orange',
             dashStyle: 'shortDashDot'
             width: 2
-            value: new Date('1970-02-01')
+            value: moment('1970-01-21')
             zIndex: 2
             label:
-                text: 'R2016.01'
+                text: 'R2015.25.0'
                 verticalAlign: 'top'
                 textAlign: 'left'
         }

@@ -1,0 +1,25 @@
+<template name="events">
+    <div class="pull-right">
+        {{#afModal class="btn btn-primary" collection="Events" operation="insert"}}
+            <i class="fa fa-plus"></i> Add new event
+        {{/afModal}}
+    </div>
+    {{> autoformModals}}
+    <h1>Events</h1>
+    {{#with events}}
+        {{#if events.length}}
+            <table class="table table-striped table-funnel">
+                <thead>
+                    <tr>
+                        <th>Event name</th>
+                        <th>Flow</th>
+                        <th>Updated at</th>
+                        <th class="text-center">Actions</th>
+                    </tr>
+                </thead>
+                <tbody>
+                </tbody>
+            </table>
+        {{/if}}
+    {{/with}}
+</template>
