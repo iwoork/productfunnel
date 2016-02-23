@@ -19,23 +19,23 @@ Template.chart.onRendered =>
                 verticalAlign: 'top'
                 textAlign: 'left'
         }
-        plotBand = {
-            from: new Date('1970-02-03'),
-            to: new Date('1970-02-10'),
-            color: '#f7f9e4',
-            id: 'plot-band-1'
-            label:
-                text: 'Chinese New Year'
-        }
+        #plotBand = {
+        #    from: new Date('1970-02-03'),
+        #    to: new Date('1970-02-10'),
+        #    color: '#f7f9e4',
+        #    id: 'plot-band-1'
+        #    label:
+        #        text: 'Chinese New Year'
+        #}
         chart.xAxis[0].addPlotLine(plotLine)
-        chart.xAxis[0].addPlotBand(plotBand)
+        #chart.xAxis[0].addPlotBand(plotBand)
 
         # Loop
         volume = []
         continuance = []
         _.each(result, (point) ->
             console.log point
-            date = moment(point.local_date).format('MM/DD/YYYY')
+            date = moment(point.local_date).format('YYYY-MM-DD')
             volume.push [date, point.count]
             continuance.push [date, point.continuance * 100]
        )
@@ -60,7 +60,9 @@ Template.chart.helpers
             crosshair: true
         yAxis: [
             {
-                title: text: 'Continuance'
+                title: 
+                    text: 'Continuance'
+                    color: 'red'
                 opposite: true
             }
             {
@@ -78,6 +80,7 @@ Template.chart.helpers
                 type: 'column'
                 color: '#bce8f1'
                 pointInterval: 24 * 3600 * 1000 
+                pointRange: 24 * 3600 * 1000
                 labels: formatter: ->
                     @value + 'k'
             }
