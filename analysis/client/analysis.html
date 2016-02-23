@@ -7,7 +7,10 @@
             {{/afModal}}
             <a href="#" class="btn btn-info btn-xs viewquery" data-toggle="modal" data-target=".query-modal"><i class="fa fa-eye"></i> View query</a>
         </div>
-        <h1>Analysis: {{funnel.name}}</h1>
+        <div class="jumbotron">
+            <h1>{{funnel.name}}</h1>
+            <p>{{funnel.description}}</p>
+        </div>
         <div class="col-md-3">
             <div data-spy="affix" data-offset-top="20" data-offset-bottom="20">
                 {{> facets}}

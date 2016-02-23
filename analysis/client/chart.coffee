@@ -3,7 +3,9 @@ Template.chart.onRendered =>
     step = Template.instance().data.step
     chart = $('#' + name).highcharts()
     funnel = Session.get 'funnel'
+
     Meteor.call 'continuance', step, {key: funnel.key}, (err, result) ->
+        chart.showLoading('Loading data from server...')
         # Add releases
         plotLine = {
             id: 'test'
@@ -29,16 +31,17 @@ Template.chart.onRendered =>
         chart.xAxis[0].addPlotBand(plotBand)
 
         # Loop
+        volume = []
+        continuance = []
         _.each(result, (point) ->
             console.log point
             date = moment(point.local_date).format('MM/DD/YYYY')
-            count = [date, point.count]
-            continuance = [date, point.continuance * 100]
-            chart.get('count').addPoint(count,false)
-            chart.get('continuance').addPoint(continuance,false)
-            chart.redraw()
-        )
-
+            volume.push [date, point.count]
+            continuance.push [date, point.continuance * 100]
+       )
+        chart.get('count').setData(volume)
+        chart.get('continuance').setData(continuance)
+        chart.hideLoading()
     return
 
 Template.chart.helpers
@@ -64,11 +67,9 @@ Template.chart.helpers
                 title: text: 'Volume'
             }
         ]
-        plotOptions: area:
-            marker:
-                enabled: false
-                radius: 2
-                states: hover: enabled: true
+        plotOptions:
+            column:
+                animation: true
         series: [
             {
                 id: 'count'
