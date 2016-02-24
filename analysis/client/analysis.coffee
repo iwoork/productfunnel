@@ -1,7 +1,11 @@
 Template.analysis.onRendered =>
     $ ->
         $affix = $('#sidebar')
-        $affix.affix()
+        option = {
+            offset: 
+                top: 400
+        }
+        $affix.affix(option)
         $parent = $affix.parent()
 
         resize = ->

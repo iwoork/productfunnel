@@ -1,10 +1,9 @@
 <template name="chart">
-    <div id="overlay-{{name}}"></div>
     <div class="pull-right">
         Show: 
-        <button class="btn btn-xs conversion">Conversion</button>
-        <button class="btn btn-xs btn-success continuance">Continuance</button>
-        <button class="btn btn-xs checkout">Checkout rate</button>
+        <button class="btn btn-xs conversion showdata" data-metrics="Conversion" data-funnel="{{name}}">Conversion</button>
+        <button class="btn btn-xs btn-success continuance showdata" data-metrics="Continuance" data-funnel="{{name}}">Continuance</button>
+        <button class="btn btn-xs checkout showdata" data-metrics="Checkout" data-funnel="{{name}}">Checkout rate</button>
     </div>
     {{> highchartsHelper chartId=name chartWidth="100%" charHeight="100%" chartObject=stepChart}}
 </template>

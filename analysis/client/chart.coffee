@@ -1,3 +1,30 @@
+Template.chart.events
+    'click .showdata': (event,template) ->
+        target = $(event.currentTarget)
+        metric =  target.data('metrics')
+
+        # Toggle color
+        if target.hasClass('btn-success')
+            target.removeClass('btn-success')
+        else
+            target.addClass('btn-success')
+
+        data = Session.get template.data.name
+        chart = $('#' + template.data.name).highcharts()
+        chart.addAxis
+            id: metric
+            title:
+                text: metric
+            opposite: true
+        chart.addSeries
+            name: metric
+            data: data.conversion
+            type: 'spline'
+            yAxis: metric
+            color: '#08F'
+            pointInterval: 24 * 3600 * 1000 
+            pointRange: 24 * 3600 * 1000
+
 Template.chart.onRendered =>
     name = Template.instance().data.name
     step = Template.instance().data.step
@@ -19,28 +46,31 @@ Template.chart.onRendered =>
                 verticalAlign: 'top'
                 textAlign: 'left'
         }
-        #plotBand = {
-        #    from: new Date('1970-02-03'),
-        #    to: new Date('1970-02-10'),
-        #    color: '#f7f9e4',
-        #    id: 'plot-band-1'
-        #    label:
-        #        text: 'Chinese New Year'
-        #}
         chart.xAxis[0].addPlotLine(plotLine)
-        #chart.xAxis[0].addPlotBand(plotBand)
 
         # Loop
+        data = {}
         volume = []
         continuance = []
-        _.each(result, (point) ->
-            console.log point
+        conversion = []
+        _.each(result, (point, index) ->
+            #console.log point
+            start = result[0]['count']
+            #console.log result[0]['count']
             date = moment(point.local_date).format('YYYY-MM-DD')
             volume.push [date, point.count]
             continuance.push [date, point.continuance * 100]
-       )
-        chart.get('count').setData(volume)
-        chart.get('continuance').setData(continuance)
+            conversion.push [date, (point.count / start)]
+        )
+        data.volume = volume
+        data.continuance = continuance
+        data.conversion = conversion
+        data.index = step
+        Session.set name, data
+
+        # Set initial data
+        chart.get('Count').setData(volume)
+        chart.get('Continuance').setData(continuance)
         chart.hideLoading()
     return
 
@@ -69,12 +99,9 @@ Template.chart.helpers
                 title: text: 'Volume'
             }
         ]
-        plotOptions:
-            column:
-                animation: true
         series: [
             {
-                id: 'count'
+                id: 'Count'
                 yAxis: 1
                 name: 'Volume'
                 type: 'column'
@@ -85,13 +112,13 @@ Template.chart.helpers
                     @value + 'k'
             }
             {
-                id: 'continuance'
+                id: 'Continuance'
                 name: 'Continuance'
                 type: 'spline'
                 color: 'red'
                 pointInterval: 24 * 3600 * 1000 
                 labels: formatter: ->
                     (@value * 100) + "&#37;"
-           }
+            }
         ]
 
