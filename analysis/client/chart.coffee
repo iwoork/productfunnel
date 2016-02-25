@@ -3,27 +3,30 @@ Template.chart.events
         target = $(event.currentTarget)
         metric =  target.data('metrics')
 
-        # Toggle color
+        # Chart
+        chart = $('#' + template.data.name).highcharts()
+
+        # Toggle series
         if target.hasClass('btn-success')
             target.removeClass('btn-success')
+            chart.get(metric).remove()
         else
             target.addClass('btn-success')
+            data = Session.get template.data.name
+            t = metric.toLowerCase()
+            chart.addAxis
+                id: metric
+                title:
+                    text: metric
+                opposite: true
+            chart.addSeries
+                name: metric
+                data: data.data[t]
+                type: 'spline'
+                yAxis: metric
+                pointInterval: 24 * 3600 * 1000 
+                pointRange: 24 * 3600 * 1000
 
-        data = Session.get template.data.name
-        chart = $('#' + template.data.name).highcharts()
-        chart.addAxis
-            id: metric
-            title:
-                text: metric
-            opposite: true
-        chart.addSeries
-            name: metric
-            data: data.conversion
-            type: 'spline'
-            yAxis: metric
-            color: '#08F'
-            pointInterval: 24 * 3600 * 1000 
-            pointRange: 24 * 3600 * 1000
 
 Template.chart.onRendered =>
     name = Template.instance().data.name
@@ -62,9 +65,10 @@ Template.chart.onRendered =>
             continuance.push [date, point.continuance * 100]
             conversion.push [date, (point.count / start)]
         )
-        data.volume = volume
-        data.continuance = continuance
-        data.conversion = conversion
+        data.data = {}
+        data.data.volume = volume
+        data.data.continuance = continuance
+        data.data.conversion = conversion
         data.index = step
         Session.set name, data
 
@@ -117,6 +121,8 @@ Template.chart.helpers
                 type: 'spline'
                 color: 'red'
                 pointInterval: 24 * 3600 * 1000 
+                marker:
+                    radius: 2
                 labels: formatter: ->
                     (@value * 100) + "&#37;"
             }
