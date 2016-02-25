@@ -4,7 +4,7 @@ calculateContinuance = (step, filter) ->
         prev = step - 1
     else
         prev = step
-
+    console.log filter
     current = "$step" + step
     previous = "$step" + prev
 

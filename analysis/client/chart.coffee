@@ -33,8 +33,16 @@ Template.chart.onRendered =>
     step = Template.instance().data.step
     chart = $('#' + name).highcharts()
     funnel = Session.get 'funnel'
-
-    Meteor.call 'continuance', step, {key: funnel.key}, (err, result) ->
+    
+    params = Router.current().params
+    console.log params
+    filters = {
+        'key': funnel.key
+    }
+    for k,v of params.query
+        filters[k] = v
+    console.log filters
+    Meteor.call 'continuance', step, filters, (err, result) ->
         chart.showLoading('Loading data from server...')
         # Add releases
         plotLine = {
