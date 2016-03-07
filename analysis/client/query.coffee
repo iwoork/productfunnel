@@ -37,7 +37,7 @@ Template.query.helpers
             while stepindex < index
                 stepindex++
                 statement = 'STEP' + stepindex + '=1'
-                console.log statement
+                #console.log statement
                 condition.push statement
             terms = condition.join(" AND ")
             progression.push 'MAX(CASE WHEN ' + terms + ' THEN 1 ELSE 0 END) as STEP' + index

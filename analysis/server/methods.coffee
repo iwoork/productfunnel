@@ -45,10 +45,11 @@ Meteor.methods
     'continuance': (step, filter) ->
         calculateContinuance(step, filter)
 
-    'fields': (field) ->
-        filters = Analysis.find().fetch()
+    'fields': (field, key) ->
+        filters = Analysis.find({key: key}).fetch()
         results = _.uniq(filters, false, (d) ->
           d.field
         )
-        fields = _.pluck(results, 'field')
-        fields
+        available = {}
+        available[field] = _.pluck(results, field)
+        available

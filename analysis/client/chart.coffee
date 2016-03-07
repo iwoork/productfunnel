@@ -27,21 +27,22 @@ Template.chart.events
                 pointInterval: 24 * 3600 * 1000 
                 pointRange: 24 * 3600 * 1000
 
-
 Template.chart.onRendered =>
     name = Template.instance().data.name
     step = Template.instance().data.step
     chart = $('#' + name).highcharts()
     funnel = Session.get 'funnel'
-    
+
     params = Router.current().params
-    console.log params
     filters = {
         'key': funnel.key
     }
+
+    # Add filters from parameters
     for k,v of params.query
         filters[k] = v
-    console.log filters
+
+    #console.log filters
     Meteor.call 'continuance', step, filters, (err, result) ->
         chart.showLoading('Loading data from server...')
         # Add releases
